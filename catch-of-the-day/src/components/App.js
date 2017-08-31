@@ -39,15 +39,6 @@ class App extends React.Component {
 		}
 	}
 
-	componentWillUnMount () {
-		base.removeBinding(this.ref);
-	}
-
-	componentWillUpdate (nextProps, nextState) {
-
-		localStorage.setItem(`order-${this.props.match.params.storeId}`, JSON.stringify(nextState.order))
-	}
-
 	addFish (fish) {
 		const fishes = { ...this.state.fishes };
 		const timestamp = Date.now();
@@ -127,6 +118,27 @@ class App extends React.Component {
 			</div>
 		)
 	}
+
+	componentWillUnMount () {
+		base.removeBinding(this.ref);
+	}
+
+	componentWillUpdate (nextProps, nextState) {
+		localStorage.setItem(`order-${this.props.match.params.storeId}`, JSON.stringify(nextState.order))
+	}
 }
 
+
+App.propTypes = {
+	match: React.PropTypes.object.isRequired
+}
+
+
+
 export default App;
+
+
+
+
+
+
